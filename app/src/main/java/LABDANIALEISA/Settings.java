@@ -5,6 +5,7 @@
 package LABDANIALEISA;
 
 import java.awt.Point;
+import java.awt.geom.Point2D;
 
 /**
  *
@@ -20,7 +21,7 @@ public class Settings {
     public static final int FPS = 60;
     public static final int SCALE = 100;
     
-    public static Point PLAYER_POS = new Point(1,5);
+    public static Point2D.Float PLAYER_POS = new Point2D.Float(1,5);//lo quiero en decimales para el spawn point sea en mitad de un cuadrado
     public static double PLAYER_ANGLE = 0;
     public static double PLAYER_SPEED = 0.004;
     public static double PLAYER_MOUSE_SENSITIVITY = 0.002;

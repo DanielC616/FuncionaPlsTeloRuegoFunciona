@@ -19,13 +19,15 @@ import java.util.logging.Logger;
  */
 
 public class Game implements Runnable { //se usa para threading, basicamente permite multitasking con la memoria
+    //lo que se pone arriba de public Game y todas las demás son las variables globales de la class
     Thread gamethread;
     private boolean isRunning;
     JFrame window = new JFrame();
     public double deltaTime = 0;
     private GameMap map;
     private Pepito pepito;
-    public Game() {
+    
+    public Game() {//por cierto, public game() o cuando veas un public nombredelaclase() es el constructor, acá se inicializan las variables locales
         
         
         // Cargar el icono, esto es una mini prueba
@@ -135,6 +137,8 @@ public class Game implements Runnable { //se usa para threading, basicamente per
         java.awt.Graphics2D g2d = (java.awt.Graphics2D)bs.getDrawGraphics(); //le da capacidad a la variable para dibujar (como un pincel)
         g2d.setColor(Color.BLACK);
         g2d.fillRect(0, 0, Settings.WIDTH, Settings.HEIGHT);
+        
+        //acá dibujo las cosas de las demás clases(está por verse si también aplica en la proyección 3D
         map.draw(g2d);//ahora si, con estos cambios se da mayor acceso a las componentes graficas más alla de jframe y swing
         pepito.draw(g2d);
         g2d.dispose();//cierra el pincel de la interfaz grafica para liberar memoria

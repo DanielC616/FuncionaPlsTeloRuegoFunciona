@@ -7,6 +7,7 @@ package LABDANIALEISA;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.geom.Point2D;
 import java.util.HashMap;
 import javax.swing.JFrame;
 
@@ -18,7 +19,7 @@ public class GameMap {
     int minimap [][] = {
         {1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0},
         {1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0},
-        {1,0,0,0,0,0,1,0,0,0,0,0,1,1,1,0},
+        {1,0,0,0,0,8,1,0,0,0,0,0,1,1,1,0},
         {0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0},
         {0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0},
         {0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0},
@@ -48,8 +49,10 @@ public class GameMap {
                     worldMap.put(new Point(i,j), value); 
                     }//le asigna una llave (coordenada) y su valor a(j,i) es decir, si hay un muro o otra cosa, vamos a usar 1 para muro por ahora, pero lo mantenemos para otras cosas
                     //eventualmente se usara para crear puntos de inicio para enemigos, jugador, objetos,texturas, etc
-                    if(value==8){
-                        Settings.PLAYER_POS= new Point(i,j);
+                    
+                    if(value==8){//aprovecho que lee el arreglo para crear esta mini función
+                        //uso el editor de mapas poniendo 8 para el player start location
+                        Settings.PLAYER_POS= new Point2D.Float(i+0.5f,j+0.5f);
                     }
                 }
                 
