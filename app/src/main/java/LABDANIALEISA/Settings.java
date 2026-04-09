@@ -26,5 +26,9 @@ public class Settings {
     public static double PLAYER_SPEED = 0.004;
     public static double PLAYER_MOUSE_SENSITIVITY = 0.002;
     
+    //variables de mapa
+    public static final int MAX_ROWS=70;//la altura
+    public static final int MAX_COLUMNS=70;
+    
     
 }
