@@ -30,7 +30,7 @@ public class GameMap {
     };
     
     private Game game; //una caja vacía basicamente
-    private HashMap<Point,Integer> worldMap = new HashMap<>(); //creamos un hashmap, es similar a un arreglo, pero está organizado por llaves que tienen valores
+    HashMap<Point,Integer> worldMap = new HashMap<>(); //creamos un hashmap, es similar a un arreglo, pero está organizado por llaves que tienen valores
     //las llaves con valores es un sistema que hará llamarlo más facil, por lo cual no tendremos que recorrer toda la matriz para hallar el valor en un punto (x,y)
     //también, point es una mini matriz de dos valores A(x,y) basicamente, sirve como sistema de coordenadas acá
     public GameMap(Game game){

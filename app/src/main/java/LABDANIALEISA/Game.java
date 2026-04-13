@@ -24,7 +24,7 @@ public class Game implements Runnable { //se usa para threading, basicamente per
     private boolean isRunning;
     JFrame window = new JFrame();
     public double deltaTime = 0;
-    private GameMap map;
+    public GameMap map;
     private Pepito pepito;
     
     public Game() {//por cierto, public game() o cuando veas un public nombredelaclase() es el constructor, acá se inicializan las variables locales

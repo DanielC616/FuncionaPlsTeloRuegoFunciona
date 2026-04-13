@@ -81,9 +81,32 @@ public class Pepito implements KeyListener,MouseMotionListener {
         }
         
         
-        this.x+=dx;//actualiza las posiciones
-        this.y+=dy;
+        //this.x+=dx;//actualiza las posiciones
+        //this.y+=dy;
+        
+        //ahora, en vez de actualizar las posiciones, lo pasamos por un check para ver si esto es posible
+        checkWallCollision(dx,dy);
 }
+        public boolean checkWall(float x, float y){
+        int gridx=(int)x;
+        int gridy=(int)y;
+        Point grid = new Point(gridx,gridy);
+        //verifica que el lugar al que queremos llegar no esté en el mapa
+       
+        //checkeamos colision en un boolean
+        // el "!" es not, entonces checkeamos si no contiene valor en las coordenadas
+        return !game.map.worldMap.containsKey(grid);
+    }
+    public void checkWallCollision(float dx, float dy){
+        //checkeamos por separado si se cumple que es un espacio disponible
+        if (checkWall(x+dx,y)==true){
+            x+=dx;
+        }
+        if(checkWall(x,y+dy)==true){
+            y+=dy;
+        }
+        
+    }
     public void update(){
         this.movement();
     }
@@ -180,7 +203,7 @@ public class Pepito implements KeyListener,MouseMotionListener {
     public void mouseDragged(MouseEvent e){
         mouseMoved(e);//si esta siendo clickeado y movido, todavia aplicar lo de mouseMoved
     }
-    
+
     
     
 }
