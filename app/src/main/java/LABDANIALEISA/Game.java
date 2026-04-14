@@ -25,7 +25,8 @@ public class Game implements Runnable { //se usa para threading, basicamente per
     JFrame window = new JFrame();
     public double deltaTime = 0;
     public GameMap map;
-    private Pepito pepito;
+    public Pepito pepito;
+    public Raycasting raycasting;
     
     public Game() {//por cierto, public game() o cuando veas un public nombredelaclase() es el constructor, acá se inicializan las variables locales
         
@@ -125,13 +126,16 @@ public class Game implements Runnable { //se usa para threading, basicamente per
         }
         
     }
+    
+    //se le pasa a las clases instancias de game
+    //inicializa las componentes del juego, se inicializa acá si en algún punto queremos reiniciar el juego
     public void newgame(){
         this.map = new GameMap(this);
         this.pepito= new Pepito(this);
+        this.raycasting= new Raycasting(this);
     }
     public void draw(){
-        //window.getContentPane().setBackground(new Color(0,0,0));
-        //this.map.draw(g); lo use anteriormente, escuché que setBackground es muy lento para esto y esta variable g es un error, pues seria null
+        
         java.awt.image.BufferStrategy bs = window.getBufferStrategy(); //escuché que es recomendado usar double o triple buffering como la estrategia de renderizar para performance
         if (bs == null) return; //para evitar errores (si no esta siendo renderizado, detengase y así no se devuelve al estado original(pantalla en blacno
         java.awt.Graphics2D g2d = (java.awt.Graphics2D)bs.getDrawGraphics(); //le da capacidad a la variable para dibujar (como un pincel)
@@ -139,6 +143,9 @@ public class Game implements Runnable { //se usa para threading, basicamente per
         g2d.fillRect(0, 0, Settings.WIDTH, Settings.HEIGHT);
         
         //acá dibujo las cosas de las demás clases(está por verse si también aplica en la proyección 3D
+        
+        raycasting.rayCast(g2d);
+        
         map.draw(g2d);//ahora si, con estos cambios se da mayor acceso a las componentes graficas más alla de jframe y swing
         pepito.draw(g2d);
         g2d.dispose();//cierra el pincel de la interfaz grafica para liberar memoria
@@ -147,6 +154,7 @@ public class Game implements Runnable { //se usa para threading, basicamente per
     }
     public void update(){
         pepito.update();
+        
     }
     
 }

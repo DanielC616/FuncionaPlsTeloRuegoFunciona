@@ -55,7 +55,7 @@ public class Pepito implements KeyListener,MouseMotionListener {
         double cos_a = Math.cos(this.angle);
         float dx=0,dy=0; 
         double dt= game.deltaTime;
-        double speed=Settings.PLAYER_SPEED*dt;
+        double speed=Settings.PLAYER_SPEED;
         
         if(runPressed==true){
             speed=speed*1.5;
@@ -88,6 +88,8 @@ public class Pepito implements KeyListener,MouseMotionListener {
         checkWallCollision(dx,dy);
 }
         public boolean checkWall(float x, float y){
+            //el mapa verdadero usa point que son ints, entonces
+            //necesito un point temporal que guarde la conversión a int de los floats
         int gridx=(int)x;
         int gridy=(int)y;
         Point grid = new Point(gridx,gridy);
@@ -112,6 +114,7 @@ public class Pepito implements KeyListener,MouseMotionListener {
     }
     public void draw(Graphics2D g){
         g.setColor(Color.yellow);
+        //el seno y coseno de están usando para hallar las posiciones finales(hasta el final de la pantalla) con respecto al angulo
         g.draw(new Line2D.Float(this.x*Settings.SCALE,this.y*Settings.SCALE,this.x*Settings.SCALE+
                 Settings.WIDTH*(float)Math.cos(this.angle),this.y*Settings.SCALE+Settings.HEIGHT*(float)Math.sin(this.angle)));
         g.setColor(Color.blue);
@@ -122,6 +125,9 @@ public class Pepito implements KeyListener,MouseMotionListener {
 }
     public Point getMapPos(){//posición en el mapa
         return new Point((int)this.x,(int)this.y);
+    }
+    public double getAngle(){
+        return this.angle;
     }
     
     @Override
