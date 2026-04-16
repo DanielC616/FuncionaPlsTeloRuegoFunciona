@@ -32,8 +32,6 @@ public class Raycasting {
         
         float x_vert,y_vert,x_hor,y_hor,rdx,rdy,depthV,depthH,deltadepth,rayDist,projHeight;//dx y dy es el salto en x e y respectivamente
         
-        Point tilevert= new Point();
-        Point tilehor= new Point();
         
         //se quita la mitad del fov, para que el loop dibuje el rayo desde la mitad antes, hasta la mitad despues
         //es decir, para asegurar que en el centro sea el angulo del jugador(o vector dirección)(hacia donde mira)
@@ -43,7 +41,7 @@ public class Raycasting {
             double sen_a=Math.sin(rayAngle);
             double cos_a=Math.cos(rayAngle);
             
-            //ahora queremos hallar los cortes verticales y horizontales 
+            //ahora queremos hallar el resultado de dos rayos basicamente, donde uno se detiene en los cortes horizontales y el otro con las verticales 
             //queremos sacar la dirección del rayo como un vector dirección que extendiremos hasta hallar un muro
             
             if (sen_a>0){//si el seno es positivo, está mirando hacia abajo (el sistema cartesiano de las interfaces gráficás están giradas)
@@ -54,7 +52,7 @@ public class Raycasting {
                 y_hor= (float)my-0.001f;//los decimales cuentan como double por default
                 rdy=-1;//en este caso es negativo por estar hacia arriba
             }
-            //ahora, el corta con y de los cortes verticales
+           
             depthH=(y_hor-oy)/(float)sen_a;//por cierto, cuando ves float es porque necesito estandarizarlo a un tipo de dato
             x_hor=ox+depthH*(float)cos_a;
             
@@ -65,7 +63,6 @@ public class Raycasting {
             
             //queremos seguir el ciclo hasta que toque un muro o llegue a su maximo depth dado
             for(int i=1;i<=Settings.MAX_DEPTH;i++){
-                tilehor= new Point((int)x_hor,(int)y_hor);
                 if(game.pepito.checkWall(x_hor,y_hor)==false){//reusamos el checkwall para checkear si hay un muro
                     //si es true, es porque no hay muro(porque esta originalmente fue para checkeo de colisión)
                     //true es que se puede avanzar(no muro)
@@ -108,7 +105,6 @@ public class Raycasting {
             
             //queremos seguir el ciclo hasta que toque un muro o llegue a su maximo depth dado
             for(int i=1;i<=Settings.MAX_DEPTH;i++){
-                tilevert= new Point((int)x_vert,(int)y_vert);
                 if(game.pepito.checkWall(x_vert,y_vert)==false){//reusamos el checkwall para checkear si hay un muro
                     //si es true, es porque no hay muro(porque esta originalmente fue para checkeo de colisión)
                     //true es que se puede avanzar(no muro)
@@ -142,6 +138,8 @@ public class Raycasting {
         int c = (int) Math.max(0, Math.min(255, intensity));
         Color co = new Color(c,c,c);
         g2d.setColor(co);
+        //se le resta un projheight/2 para crear un offset que centra la camara
+        //si no, la camara queda un poco más arriba de lo que queremos
         g2d.fill(new Rectangle2D.Float(ray*Settings.SCREEN_SCALE, Settings.HALF_HEIGHT-projHeight/2, Settings.SCREEN_SCALE, projHeight));
             
             this.rayAngle+=Settings.DELTA_ANGLE;//cada vez, se mueve un poco el angulo por delta angulo (espacio entre rayos)

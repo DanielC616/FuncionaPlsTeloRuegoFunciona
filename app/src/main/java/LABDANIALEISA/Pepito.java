@@ -139,7 +139,7 @@ public class Pepito implements KeyListener,MouseMotionListener {
         int code = e.getKeyCode();//escucha y espera una tecla, si una tecla es tocada, lo pasa a su codigo que lo identifica que es un int
         
         if(code == KeyEvent.VK_W){//si el codigo es igual al valor de codigo para w
-            upPressed=true;
+           upPressed=true;
         }
         if(code == KeyEvent.VK_A){
             leftPressed=true;

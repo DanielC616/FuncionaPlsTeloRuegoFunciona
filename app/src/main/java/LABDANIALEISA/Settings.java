@@ -27,7 +27,7 @@ public class Settings {
     
     public static Point2D.Float PLAYER_POS = new Point2D.Float(1,5);//lo quiero en decimales para el spawn point sea en mitad de un cuadrado
     public static double PLAYER_ANGLE = 0;
-    public static double PLAYER_SPEED = 0.004;
+    public static double PLAYER_SPEED = 0.008;
     public static double PLAYER_MOUSE_SENSITIVITY = 0.002;
     
     //variables de mapa
@@ -38,7 +38,7 @@ public class Settings {
     //variables raycasting, hay otros métodos, y puede que este no sea el más optimo, pero es el más facil a entender conceptualmente
     //la razón que hay mitades, es porque se usará desde 0 hasta la mitad (para llegar al jugador)
     //y luego desde el jugador hasta la mitad del fov para el fov completo
-    public static final float FOV_GRADOS=60;
+    public static final float FOV_GRADOS=90;
     public static final float FOV = (FOV_GRADOS*(float)Math.PI)/180;//pasar fov a radianes como la computadora
     public static final float HALF_FOV=FOV/2;//queremos lanzar la mitad del fov de un lado, y la otra mitad del otro
     //usamos num_rays=width/2, para reducir el numero de rayos
